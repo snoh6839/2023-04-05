@@ -38,9 +38,6 @@ while(true) {
 
 echo "끝!\n";
 
-
-<?php
-
 // 초기 카드 덱 생성
 function createDeck() {
     $deck = array();
@@ -117,11 +114,7 @@ function playBlackjack() {
     dealerDrawCard($deck, $dealerHand);
     dealerDrawCard($deck, $dealerHand);
 
-    while (true) {
-        $userValue = calculateHandValue($userHand);
-        $dealerValue = calculateHandValue($dealerHand);
+    
 
-        if ($userValue == 21) { // 유저의 승리
-            echo "블랙잭!
-
+}
 ?>
