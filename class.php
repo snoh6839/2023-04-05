@@ -19,7 +19,9 @@ class Food{
 }
 
 $obj_food = new Food( "탕수육",10000);
+$obj_food2 = new Food("짜장면", 10000);
 $obj_food->priceChanger(12000);
 $obj_food->fnc_print_food();
+$obj_food2->fnc_print_food();
 
 ?>
