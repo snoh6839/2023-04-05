@@ -101,6 +101,64 @@ function dealerDrawCard(&$deck, &$dealerHand) {
 
 // 게임 실행
 
+$deck = createDeck(); // 카드 덱 생성
+$userHand = array(); // 유저 카드 핸드 초기화
+$dealerHand = array(); // 딜러 카드 핸드 초기화
+
+// 유저와 딜러가 각각 2장의 카드를 받음
+userDrawCard($deck, $userHand);
+dealerDrawCard($deck, $dealerHand);
+userDrawCard($deck, $userHand);
+dealerDrawCard($deck, $dealerHand);
+
+while (true) {
+    echo "카드를 더 받으시겠습니까? (1: Yes, 2: No, 0: Quit) ";
+    fscanf(STDIN, "%d", $input);
+    echo "\n";
+    if ($input === 0) {
+        break;
+    } else if ($input === 1) {
+        userDrawCard($deck, $userHand);
+        $userValue = calculateHandValue($userHand);
+        if ($userValue > 21) {
+            echo "유저 패배! 카드의 합이 21을 초과했습니다.\n";
+            break;
+        }
+    } else if ($input === 2) {
+        $userValue = calculateHandValue($userHand);
+        $dealerValue = calculateHandValue($dealerHand);
+
+        if ($dealerValue >= 17) {
+            while ($dealerValue < $userValue && $dealerValue < 21) {
+                dealerDrawCard($deck, $dealerHand);
+                $dealerValue = calculateHandValue($dealerHand);
+            }
+        }
+
+        if ($dealerValue > 21 || $userValue > $dealerValue) {
+            echo "유저 승리! 카드의 합이 더 높습니다.\n";
+        } else if ($userValue === $dealerValue) {
+            $userCards = count($userHand);
+            $dealerCards = count($dealerHand);
+            if ($userCards < $dealerCards) {
+                echo "유저 승리! 카드의 수가 적습니다.\n";
+            } else if ($userCards > $dealerCards) {
+                echo "딜러 승리! 카드의 수가 적습니다.\n";
+            } else {
+                $userSuit = getHighestSuit($userHand);
+                $dealerSuit = getHighestSuit($dealerHand);
+                if ($userSuit > $dealerSuit) {
+                    echo "유저 승리! 스페이드 > 크로버 > 다이아 > 하트 순으로 계산합니다.\n";
+                } else {
+                    echo "딜러 승리! 스페이드 > 크로버 > 다이아 > 하트 순으로 계산합니다.\n";
+                }
+            }
+        } else {
+            echo "딜러 승리! 카드의 합이 더 높습니다.\n";
+        }
+        break;
+    } else {
+        echo "잘못된 입력입니다. 다시 입력해주세요}
 
 
 ?>
