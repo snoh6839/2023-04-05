@@ -34,8 +34,6 @@ while(true) {
 	print "\n";
 }
 
-
-
 echo "끝!\n";
 
 // 초기 카드 덱 생성
@@ -101,20 +99,6 @@ function dealerDrawCard(&$deck, &$dealerHand) {
     echo "\n";
 }
 
-// 게임 실행
-function playBlackjack() {
-    echo "블랙잭 게임을 시작합니다.\n";
-    $deck = createDeck();
-    $userHand = array();
-    $dealerHand = array();
+// 게임 실행 function playBlackjack()
 
-    // 유저와 딜러에게 초기 카드 2장씩 뽑음
-    userDrawCard($deck, $userHand);
-    userDrawCard($deck, $userHand);
-    dealerDrawCard($deck, $dealerHand);
-    dealerDrawCard($deck, $dealerHand);
-
-    
-
-}
 ?>
