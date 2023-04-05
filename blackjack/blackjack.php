@@ -145,8 +145,8 @@ while (true) {
             } else if ($userCards > $dealerCards) {
                 echo "딜러 승리! 카드의 수가 적습니다.\n";
             } else {
-                $userSuit = getHighestSuit($userHand);
-                $dealerSuit = getHighestSuit($dealerHand);
+                $userSuit = calculateHandValue($userHand);
+                $dealerSuit = calculateHandValue($dealerHand);
                 if ($userSuit > $dealerSuit) {
                     echo "유저 승리! 스페이드 > 크로버 > 다이아 > 하트 순으로 계산합니다.\n";
                 } else {
@@ -158,7 +158,10 @@ while (true) {
         }
         break;
     } else {
-        echo "잘못된 입력입니다. 다시 입력해주세요}
+        echo "잘못된 입력입니다. 다시 입력해주세요";
+    }
+}
+
 
 
 ?>
