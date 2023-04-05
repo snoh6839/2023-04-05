@@ -33,5 +33,95 @@ while(true) {
 	echo $input;
 	print "\n";
 }
+
+
+
 echo "끝!\n";
+
+
+<?php
+
+// 초기 카드 덱 생성
+function createDeck() {
+    $deck = array();
+    $suits = array('스페이드', '하트', '다이아', '클로버');
+    $faces = array('2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A');
+    foreach ($suits as $suit) {
+        foreach ($faces as $face) {
+            $deck[] = array('face' => $face, 'suit' => $suit);
+        }
+    }
+    shuffle($deck); // 덱을 무작위로 섞음
+    return $deck;
+}
+
+// 카드 한 장을 뽑음
+function drawCard(&$deck) {
+    return array_shift($deck);
+}
+
+// 카드의 합을 계산
+function calculateHandValue($hand) {
+    $value = 0;
+    $numAces = 0;
+    foreach ($hand as $card) {
+        if ($card['face'] == 'A') {
+            $numAces++;
+        } else if (in_array($card['face'], array('K', 'Q', 'J', '10'))) {
+            $value += 10;
+        } else {
+            $value += intval($card['face']);
+        }
+    }
+    // 에이스 처리
+    for ($i = 0; $i < $numAces; $i++) {
+        if ($value + 11 <= 21) {
+            $value += 11;
+        } else {
+            $value += 1;
+        }
+    }
+    return $value;
+}
+
+// 유저에게 카드를 뽑음
+function userDrawCard(&$deck, &$userHand) {
+    $userHand[] = drawCard($deck);
+    echo "당신의 카드: ";
+    foreach ($userHand as $card) {
+        echo $card['face'] . $card['suit'] . " ";
+    }
+    echo "\n";
+}
+
+// 딜러에게 카드를 뽑음
+function dealerDrawCard(&$deck, &$dealerHand) {
+    $dealerHand[] = drawCard($deck);
+    echo "딜러의 카드: ";
+    foreach ($dealerHand as $card) {
+        echo $card['face'] . $card['suit'] . " ";
+    }
+    echo "\n";
+}
+
+// 게임 실행
+function playBlackjack() {
+    echo "블랙잭 게임을 시작합니다.\n";
+    $deck = createDeck();
+    $userHand = array();
+    $dealerHand = array();
+
+    // 유저와 딜러에게 초기 카드 2장씩 뽑음
+    userDrawCard($deck, $userHand);
+    userDrawCard($deck, $userHand);
+    dealerDrawCard($deck, $dealerHand);
+    dealerDrawCard($deck, $dealerHand);
+
+    while (true) {
+        $userValue = calculateHandValue($userHand);
+        $dealerValue = calculateHandValue($dealerHand);
+
+        if ($userValue == 21) { // 유저의 승리
+            echo "블랙잭!
+
 ?>
