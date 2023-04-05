@@ -23,18 +23,18 @@
 // 0을 입력하거나 카드를 다 쓰지 않으면 게임 종료되지 않음.
 
 
-while(true) {
-	echo '시작';
-	print "\n";
-	fscanf(STDIN, "%d\n", $input);        
-	if($input === 0) {
-		break;
-	}
-	echo $input;
-	print "\n";
-}
+// while(true) {
+// 	echo '시작';
+// 	print "\n";
+// 	fscanf(STDIN, "%d\n", $input);        
+// 	if($input === 0) {
+// 		break;
+// 	}
+// 	echo $input;
+// 	print "\n";
+// }
 
-echo "끝!\n";
+// echo "끝!\n";
 
 // 초기 카드 덱 생성
 function createDeck() {
@@ -99,6 +99,8 @@ function dealerDrawCard(&$deck, &$dealerHand) {
     echo "\n";
 }
 
-// 게임 실행 function playBlackjack()
+// 게임 실행
+
+
 
 ?>
